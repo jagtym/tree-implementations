@@ -5,19 +5,19 @@ AVL and BST tree implementation written in C++.
 + gcc
 + cmake
 ## Installation
-Set up cmake using the command: 
+Set up cmake using;
 ```
 cmake .
 ```
-Build program using the command:
+Build program using:
 ```
 make
 ```
-Run program in manual mode using the command:
+Run program in manual mode using:
 ```
 ./TreeImplementations manual
 ```
-Run progarm in testing mode using the command:
+Run progarm in testing mode using:
 ```
 ./TreeImplementations testing
 ```
