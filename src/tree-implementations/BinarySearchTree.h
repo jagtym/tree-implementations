@@ -36,6 +36,23 @@ class BinarySearchTree {
         }
     }
 
+    Node* valueSearch(int value, Node* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+        if (value == root -> getValue()) {
+            return root;
+        }
+        if (value > root -> getValue()) {
+            return valueSearch(value, root -> getRightChild());
+        } 
+        return valueSearch(value, root -> getLeftChild());
+    }
+
+    Node* getElementOfValue(int value) {
+        return valueSearch(value, root_);
+    }
+
     Node* getLeftmostElement() {
         path_.clear();
         Node *current_node = root_;
@@ -97,6 +114,35 @@ class BinarySearchTree {
         value_buffer_.clear();
         postOrder(parentNode);
     }
+
+    void postOrderDestroy(Node *currentNode) {
+        if (!currentNode) {
+            return;
+        }
+        postOrderDestroy(currentNode -> getLeftChild());
+        postOrderDestroy(currentNode -> getRightChild());
+        value_buffer_.push_back(currentNode -> getValue());
+        delete currentNode;
+    }
+
+    void destroyTreePostOrder(Node *parentNode) {
+        value_buffer_.clear();
+        postOrderDestroy(parentNode);
+        std::cout << "Removed: " << std::endl;
+        printValueBuffer();
+        std::cout << std::endl;
+    }
+
+    void repairTreeFromBuffer() {
+        // Removes the last value which is the deleted root
+        value_buffer_.pop_back();
+
+        while(!value_buffer_.empty()) {
+            addNode(value_buffer_.back());
+            value_buffer_.pop_back();
+        }
+    }
+
     public:
         void addNode(int value) {
             if (!root_) {
@@ -130,18 +176,38 @@ class BinarySearchTree {
             std::cout << std::endl;
         }
 
+        void destroyTree() {
+            std::cout << "Destroying tree!" << std::endl;
+            destroyTreePostOrder(root_);
+            root_ = nullptr;
+        }
+
         void printInOrder() {
-            getElementsInOrder(root_);
-            printValueBuffer();
+            if (root_) {
+                getElementsInOrder(root_);
+                printValueBuffer();
+            }
         }
 
         void printPreOrder() {
-            getElementsPreOrder(root_);
-            printValueBuffer();
+            if (root_) {
+                getElementsPreOrder(root_);
+                printValueBuffer();
+            }
         }
 
         void printPostOrder() {
-            getElementsPostOrder(root_);
-            printValueBuffer();
+            if (root_) {
+                getElementsPostOrder(root_);
+                printValueBuffer();
+            }
+        }
+
+        void removeNodeFromTree(int val) {
+            Node *currentNode = getElementOfValue(val);
+            if (currentNode) {
+                destroyTreePostOrder(currentNode);
+                repairTreeFromBuffer();
+            }
         }
 };

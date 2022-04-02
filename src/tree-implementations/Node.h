@@ -8,17 +8,19 @@ class Node {
         Node(int val, Node* parent) {
             val_ = val;
             parent_ = parent;
+            left_ = nullptr;
+            right_ = nullptr;
         }
 
         ~Node() {
-            if (val_ == parent_ -> getLeftChild() -> getValue()) {
+            if (this == parent_ -> getLeftChild()) {
                 parent_ -> setLeftChild(nullptr);
-            } else if (val_ == parent_ -> getRightChild() -> getValue()) {
+            } else if (this == parent_ -> getRightChild()) {
                 parent_ -> setRightChild(nullptr);
             } else {
-                std::cout << "Node already removed!" << std::endl;
+                std::cout << "Node already forgot!" << std::endl;
             }
-        }
+        } 
 
         int getValue() {
             return val_;

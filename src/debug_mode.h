@@ -35,6 +35,23 @@ void debug_mode() {
 
     std::cout << "Post order: " << std::endl;
     tree.printPostOrder();
+
+    // Check removing element
+
+    std::cout << "Before removing: " << std::endl;
+    tree.printInOrder();
+    tree.removeNodeFromTree(3);
+    std::cout << "Removed element of value 3" << std::endl;
+    tree.printInOrder();
+
+    // Check tree destruction
+    tree.destroyTree();
+
+    // Check if possible to print empty tree
+    tree.printInOrder();
+    tree.printPostOrder();
+    tree.printPreOrder();
+
     // Check protection against empty trees
 
     BinarySearchTree tree2 = BinarySearchTree();
