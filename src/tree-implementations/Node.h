@@ -3,11 +3,11 @@ class Node {
     Node *left_;
     Node *right_;
 
-    Node(int val) {
-        val_ = val;
-    }
-
     public:
+        Node(int val) {
+            val_ = val;
+        }
+
         int getValue() {
             return val_;
         }
