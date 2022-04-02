@@ -21,7 +21,7 @@ class BinarySearchTree {
                     current_node = current_node -> getLeftChild();
                 }
             } else {
-                std::cout << "Value already in tree!" << std::endl;
+                std::cout << "(" << value << ") - " << "Value already in tree!" << std::endl;
                 break;
             }
         }
