@@ -10,4 +10,7 @@ void debug_mode() {
 
     int smallest = tree.getSmallestValue();
     std::cout << "Smallest Value: " << smallest << std::endl;
+
+    int largest = tree.getLargestValue();
+    std::cout << "Largest Value: " << largest << std::endl;
 }
