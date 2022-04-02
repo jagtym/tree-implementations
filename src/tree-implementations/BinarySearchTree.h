@@ -3,6 +3,13 @@ class BinarySearchTree {
     std::vector<int> path_;
     std::vector<int> value_buffer_;
 
+    void printValueBuffer() {
+        for (int x : value_buffer_) {
+                std::cout << x << " ";
+            }
+        std::cout << std::endl;
+    }
+
     void assignNode(int value) {
         Node *current_node = root_;
         bool found_place = false;
@@ -62,7 +69,34 @@ class BinarySearchTree {
         value_buffer_.clear();
         inOrder(parentNode);
     }
+
+    void preOrder(Node *currentNode) {
+        if (!currentNode) {
+            return;
+        }
+        value_buffer_.push_back(currentNode -> getValue());
+        preOrder(currentNode -> getLeftChild());
+        preOrder(currentNode -> getRightChild());
+    }
+
+    void getElementsPreOrder(Node *parentNode) {
+        value_buffer_.clear();
+        preOrder(parentNode);
+    }
     
+    void postOrder(Node *currentNode) {
+        if (!currentNode) {
+            return;
+        }
+        postOrder(currentNode -> getLeftChild());
+        postOrder(currentNode -> getRightChild());
+        value_buffer_.push_back(currentNode -> getValue());
+    }
+
+    void getElementsPostOrder(Node *parentNode) {
+        value_buffer_.clear();
+        postOrder(parentNode);
+    }
     public:
         void addNode(int value) {
             if (!root_) {
@@ -98,9 +132,16 @@ class BinarySearchTree {
 
         void printInOrder() {
             getElementsInOrder(root_);
-            for (int x : value_buffer_) {
-                std::cout << x << " ";
-            }
-            std::cout << std::endl;
+            printValueBuffer();
+        }
+
+        void printPreOrder() {
+            getElementsPreOrder(root_);
+            printValueBuffer();
+        }
+
+        void printPostOrder() {
+            getElementsPostOrder(root_);
+            printValueBuffer();
         }
 };

@@ -26,9 +26,15 @@ void debug_mode() {
     tree.printSearchPath();
 
     // Check in order print
-
+    
+    std::cout << "In order: " << std::endl;
     tree.printInOrder();
 
+    std::cout << "Pre order: " << std::endl;
+    tree.printPreOrder();
+
+    std::cout << "Post order: " << std::endl;
+    tree.printPostOrder();
     // Check protection against empty trees
 
     BinarySearchTree tree2 = BinarySearchTree();
