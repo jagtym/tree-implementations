@@ -1,5 +1,6 @@
 class BinarySearchTree {
     Node *root_;
+    std::vector<int> path_;
 
     void assignNode(int value) {
         Node *current_node = root_;
@@ -28,16 +29,20 @@ class BinarySearchTree {
     }
 
     Node* getLeftmostElement() {
+        path_.clear();
         Node *current_node = root_;
         while(!current_node -> isLeftEmpty()) {
+            path_.push_back(current_node -> getValue());
             current_node = current_node -> getLeftChild();
         }
         return current_node;
     }
 
     Node* getRightmostElement() {
+        path_.clear();
         Node *current_node = root_;
         while(!current_node -> isRightEmpty()) {
+            path_.push_back(current_node -> getValue());
             current_node = current_node -> getRightChild();
         }
         return current_node;
@@ -66,5 +71,13 @@ class BinarySearchTree {
             }
             std::cout << "Tree has no root element. Returning -1" << std::endl;
             return -1; 
+        }
+
+        void printSearchPath() {
+            std::cout << "path: ";
+            for (int x: path_) {
+                std::cout << x << " ";
+            }
+            std::cout << std::endl;
         }
 };

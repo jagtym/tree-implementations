@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "tree-implementations/Node.h"
 #include "tree-implementations/BinarySearchTree.h"
