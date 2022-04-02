@@ -20,11 +20,11 @@ class Node {
             return right_;
         }
 
-        Node* setLeftChild(Node* left) {
+        void setLeftChild(Node* left) {
             left_ = left;
         }
 
-        Node* setRightChild(Node* right) {
+        void setRightChild(Node* right) {
             right_ = right;
         }
 
