@@ -25,6 +25,10 @@ void debug_mode() {
     std::cout << "Largest Value: " << largest << std::endl;
     tree.printSearchPath();
 
+    // Check in order print
+
+    tree.printInOrder();
+
     // Check protection against empty trees
 
     BinarySearchTree tree2 = BinarySearchTree();

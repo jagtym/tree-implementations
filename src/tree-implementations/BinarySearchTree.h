@@ -1,6 +1,7 @@
 class BinarySearchTree {
     Node *root_;
     std::vector<int> path_;
+    std::vector<int> value_buffer_;
 
     void assignNode(int value) {
         Node *current_node = root_;
@@ -47,6 +48,20 @@ class BinarySearchTree {
         }
         return current_node;
     }
+
+    void inOrder(Node *currentNode) {
+        if (!currentNode) {
+            return;
+        }
+        inOrder(currentNode -> getLeftChild());
+        value_buffer_.push_back(currentNode -> getValue());
+        inOrder(currentNode -> getRightChild());
+    }
+
+    void getElementsInOrder(Node *parentNode) {
+        value_buffer_.clear();
+        inOrder(parentNode);
+    }
     
     public:
         void addNode(int value) {
@@ -76,6 +91,14 @@ class BinarySearchTree {
         void printSearchPath() {
             std::cout << "path: ";
             for (int x: path_) {
+                std::cout << x << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        void printInOrder() {
+            getElementsInOrder(root_);
+            for (int x : value_buffer_) {
                 std::cout << x << " ";
             }
             std::cout << std::endl;
