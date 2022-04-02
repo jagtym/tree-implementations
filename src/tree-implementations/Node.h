@@ -2,10 +2,12 @@ class Node {
     int val_;
     Node *left_;
     Node *right_;
+    Node *parent_;
 
     public:
-        Node(int val) {
+        Node(int val, Node* parent) {
             val_ = val;
+            parent_ = parent;
         }
 
         int getValue() {

@@ -8,14 +8,14 @@ class BinarySearchTree {
         while (!found_place) {
             if (value > current_node -> getValue()) {
                 if (current_node -> isRightEmpty()) {
-                    current_node -> setRightChild(new Node(value));
+                    current_node -> setRightChild(new Node(value, current_node));
                     found_place = true;
                 } else {
                     current_node = current_node -> getRightChild();
                 }
             } else if (value < current_node -> getValue()) {
                 if (current_node -> isLeftEmpty()) {
-                    current_node -> setLeftChild(new Node(value));
+                    current_node -> setLeftChild(new Node(value, current_node));
                     found_place = true;
                 } else {
                     current_node = current_node -> getLeftChild();
@@ -46,7 +46,7 @@ class BinarySearchTree {
     public:
         void addNode(int value) {
             if (!root_) {
-                root_ = new Node(value);
+                root_ = new Node(value, nullptr);
             } else {
                 assignNode(value);
             }
