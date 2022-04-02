@@ -10,6 +10,16 @@ class Node {
             parent_ = parent;
         }
 
+        ~Node() {
+            if (val_ == parent_ -> getLeftChild() -> getValue()) {
+                parent_ -> setLeftChild(nullptr);
+            } else if (val_ == parent_ -> getRightChild() -> getValue()) {
+                parent_ -> setRightChild(nullptr);
+            } else {
+                std::cout << "Node already removed!" << std::endl;
+            }
+        }
+
         int getValue() {
             return val_;
         }
