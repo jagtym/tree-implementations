@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+#include "tree-implementations/Node.h"
+#include "tree-implementations/BinarySearchTree.h"
+
 #include "testing_mode.h"
 #include "manual_mode.h"
 #include "debug_mode.h"
