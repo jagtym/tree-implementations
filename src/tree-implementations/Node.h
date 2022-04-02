@@ -13,12 +13,14 @@ class Node {
         }
 
         ~Node() {
-            if (this == parent_ -> getLeftChild()) {
-                parent_ -> setLeftChild(nullptr);
-            } else if (this == parent_ -> getRightChild()) {
-                parent_ -> setRightChild(nullptr);
-            } else {
-                std::cout << "Node already forgot!" << std::endl;
+            if (parent_) {
+                if (this == parent_ -> getLeftChild()) {
+                    parent_ -> setLeftChild(nullptr);
+                } else if (this == parent_ -> getRightChild()) {
+                    parent_ -> setRightChild(nullptr);
+                } else {
+                    std::cout << "Node already forgot!" << std::endl;
+                }
             }
         } 
 
