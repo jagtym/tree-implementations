@@ -53,11 +53,18 @@ class BinarySearchTree {
         }
 
         int getSmallestValue() {
-            return getLeftmostElement() -> getValue();
+            if (root_) {
+                return getLeftmostElement() -> getValue();
+            }
+            std::cout << "Tree has no root element. Returning -1" << std::endl;
+            return -1; 
         }
 
         int getLargestValue() {
-            return getRightmostElement() -> getValue();
+            if (root_) {
+                return getRightmostElement() -> getValue();
+            }
+            std::cout << "Tree has no root element. Returning -1" << std::endl;
+            return -1; 
         }
-    
 };
