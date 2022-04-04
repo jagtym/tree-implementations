@@ -73,6 +73,14 @@ class BinarySearchTree {
         return current_node;
     }
 
+    Node* getNeighbour(Node* node) {
+        inOrder(root_);
+        std::vector<int>::iterator i = std::find(value_buffer_.begin(), value_buffer_.end(), node -> getValue());
+        int position = std::distance(value_buffer_.begin(), i);
+
+        return getElementOfValue(value_buffer_[position + 1]);
+    }
+
     void removeNode(Node *removedNode) {
         bool leftEmpty = removedNode -> isLeftEmpty();
         bool rightEmpty = removedNode -> isRightEmpty();
@@ -84,7 +92,7 @@ class BinarySearchTree {
         } else if (!rightEmpty && leftEmpty) {
             removedNode -> replaceParentChild(removedNode -> getRightChild());
         } else {
-            Node *newParent = getLeftmostElement(removedNode -> getRightChild());
+            Node *newParent = getNeighbour(removedNode);
             int newParentValue = newParent -> getValue();
             removeNode(newParent);
 
