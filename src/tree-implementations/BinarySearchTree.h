@@ -190,16 +190,6 @@ class BinarySearchTree {
         std::cout << std::endl;
     }
 
-    void repairTreeFromBuffer() {
-        // Removes the last value which is the deleted root
-        value_buffer_.pop_back();
-
-        while(!value_buffer_.empty()) {
-            addNode(value_buffer_.back());
-            value_buffer_.pop_back();
-        }
-    }
-
     public:
         void addNode(int value) {
             if (!root_) {
