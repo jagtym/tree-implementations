@@ -4,6 +4,7 @@ class Node {
     Node *right_;
     Node *parent_;
 
+
     public:
         Node(int val, Node* parent) {
             val_ = val;
@@ -13,15 +14,15 @@ class Node {
         }
 
         ~Node() {
-            if (parent_) {
-                if (this == parent_ -> getLeftChild()) {
-                    parent_ -> setLeftChild(nullptr);
-                } else if (this == parent_ -> getRightChild()) {
-                    parent_ -> setRightChild(nullptr);
-                } else {
-                    std::cout << "Node already forgot!" << std::endl;
-                }
-            }
+            // if (parent_) {
+            //     if (this == parent_ -> getLeftChild()) {
+            //         parent_ -> setLeftChild(nullptr);
+            //     } else if (this == parent_ -> getRightChild()) {
+            //         parent_ -> setRightChild(nullptr);
+            //     } else {
+            //         std::cout << "Node already forgot!" << std::endl;
+            //     }
+            // }
         } 
 
         int getValue() {
@@ -44,6 +45,10 @@ class Node {
             right_ = right;
         }
 
+        void setParent(Node* parent) {
+            parent_ = parent;
+        }
+
         bool isLeftEmpty() {
             if (!left_) {
                 return true;
@@ -56,5 +61,15 @@ class Node {
                 return true;
             }
             return false;
+        }
+
+        void replaceParentChild(Node *newNode) {
+            if (parent_) {
+                if(this == parent_ -> getLeftChild()) {
+                    parent_ -> setLeftChild(newNode);
+                } else {
+                    parent_ -> setRightChild(newNode);
+                }
+            }
         }
 };

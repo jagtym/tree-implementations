@@ -53,9 +53,9 @@ class BinarySearchTree {
         return valueSearch(value, root_);
     }
 
-    Node* getLeftmostElement() {
+    Node* getLeftmostElement(Node *root) {
         path_.clear();
-        Node *current_node = root_;
+        Node *current_node = root;
         while(!current_node -> isLeftEmpty()) {
             path_.push_back(current_node -> getValue());
             current_node = current_node -> getLeftChild();
@@ -63,14 +63,44 @@ class BinarySearchTree {
         return current_node;
     }
 
-    Node* getRightmostElement() {
+    Node* getRightmostElement(Node *root) {
         path_.clear();
-        Node *current_node = root_;
+        Node *current_node = root;
         while(!current_node -> isRightEmpty()) {
             path_.push_back(current_node -> getValue());
             current_node = current_node -> getRightChild();
         }
         return current_node;
+    }
+
+    void removeNode(Node *removedNode, bool leaveAlive) {
+        bool leftEmpty = removedNode -> isLeftEmpty();
+        bool rightEmpty = removedNode -> isRightEmpty();
+
+        if (leftEmpty && rightEmpty) {
+            removedNode -> replaceParentChild(nullptr);
+        } else if (!leftEmpty && rightEmpty) {
+            removedNode -> replaceParentChild(removedNode -> getLeftChild());
+        } else if (!rightEmpty && leftEmpty) {
+            removedNode -> replaceParentChild(removedNode -> getRightChild());
+        } else {
+            Node *leftChild = removedNode -> getLeftChild();
+            Node *rightChild = removedNode -> getRightChild();
+            Node *newParent = getLeftmostElement(rightChild);
+
+            removeNode(newParent, true);
+            leftChild -> setParent(newParent);
+            rightChild -> setParent(newParent);
+            newParent -> setLeftChild(leftChild);
+            newParent -> setRightChild(rightChild);
+            
+            if (removedNode == root_) {
+                root_ = newParent;
+            }
+        }
+        if (!leaveAlive) {
+            delete removedNode;
+        }
     }
 
     void inOrder(Node *currentNode) {
@@ -154,7 +184,7 @@ class BinarySearchTree {
 
         int getSmallestValue() {
             if (root_) {
-                return getLeftmostElement() -> getValue();
+                return getLeftmostElement(root_) -> getValue();
             }
             std::cout << "Tree has no root element. Returning -1" << std::endl;
             return -1; 
@@ -162,7 +192,7 @@ class BinarySearchTree {
 
         int getLargestValue() {
             if (root_) {
-                return getRightmostElement() -> getValue();
+                return getRightmostElement(root_) -> getValue();
             }
             std::cout << "Tree has no root element. Returning -1" << std::endl;
             return -1; 
@@ -206,8 +236,7 @@ class BinarySearchTree {
         void removeNodeFromTree(int val) {
             Node *currentNode = getElementOfValue(val);
             if (currentNode) {
-                destroyTreePostOrder(currentNode);
-                repairTreeFromBuffer();
+                removeNode(currentNode, false);
             }
         }
 };
