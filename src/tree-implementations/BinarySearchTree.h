@@ -91,15 +91,22 @@ class BinarySearchTree {
             Node *leftChild = removedNode -> getLeftChild();
             Node *rightChild = removedNode -> getRightChild();
             newParent = new Node(newParentValue, removedNode -> getParent());
-            leftChild -> setParent(newParent);
-            rightChild -> setParent(newParent);
+
+            if (leftChild) {
+                leftChild -> setParent(newParent);
+            }
+            if (rightChild) {
+                rightChild -> setParent(newParent);
+            }
             newParent -> setLeftChild(leftChild);
             newParent -> setRightChild(rightChild);
+            removedNode -> replaceParentChild(newParent);
 
             if (removedNode == root_) {
                 root_ = newParent;
             }
         }
+        delete removedNode;
     }
 
     void inOrder(Node *currentNode) {
