@@ -190,6 +190,38 @@ class BinarySearchTree {
         std::cout << std::endl;
     }
 
+    bool balanceTreeBFS() {
+        std::queue<Node*> nodeQueue;
+        nodeQueue.push(root_);
+        bool balanced = true;
+
+        while(!nodeQueue.empty()) {
+            Node *current = nodeQueue.front();
+            Node *left = current -> getLeftChild();
+            Node *right = current -> getRightChild();
+
+            int leftHeight = getTreeDepth(left) + 1;
+            int rightHeight = getTreeDepth(right) + 1;
+
+            if (abs(leftHeight - rightHeight) > 1) {
+                int val = current -> getValue();
+                removeNode(current);
+                assignNode(val);
+                balanced = false;
+                break;
+            }
+
+            if (left) {
+                nodeQueue.push(left);
+            }
+            if (right) {
+                nodeQueue.push(right);
+            }
+            nodeQueue.pop();
+        }
+        return balanced;
+    }
+
     public:
         void addNode(int value) {
             if (!root_) {
@@ -259,5 +291,12 @@ class BinarySearchTree {
 
         void printTreeDepth() {
             std::cout << "Tree depth: " << getTreeDepth(root_) << std::endl;
+        }
+
+        void balanceTree() {
+            bool balanced = false;
+            while (!balanced) {
+                balanced = balanceTreeBFS();
+            }
         }
 };

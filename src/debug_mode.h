@@ -66,4 +66,19 @@ void debug_mode() {
     tree2.getLargestValue();
     tree2.getSmallestValue();
     tree2.printSearchPath();
+
+    // Check balancing the tree
+
+    BinarySearchTree tree3 = BinarySearchTree();
+    tree3.addNode(1);
+    tree3.addNode(2);
+    tree3.addNode(3);
+    tree3.addNode(4);
+    tree3.addNode(5);
+    tree3.addNode(6);
+    tree3.addNode(7);
+
+    tree3.printTreeDepth();
+    tree3.balanceTree();
+    tree3.printTreeDepth();
 }
