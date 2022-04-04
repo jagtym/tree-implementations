@@ -37,6 +37,10 @@ class Node {
             return right_;
         }
 
+        Node* getParent() {
+            return parent_;
+        }
+
         void setLeftChild(Node* left) {
             left_ = left;
         }
@@ -65,7 +69,7 @@ class Node {
 
         void replaceParentChild(Node *newNode) {
             if (parent_) {
-                if(this == parent_ -> getLeftChild()) {
+                if (this == parent_ -> getLeftChild()) {
                     parent_ -> setLeftChild(newNode);
                 } else {
                     parent_ -> setRightChild(newNode);

@@ -73,7 +73,7 @@ class BinarySearchTree {
         return current_node;
     }
 
-    void removeNode(Node *removedNode, bool leaveAlive) {
+    void removeNode(Node *removedNode) {
         bool leftEmpty = removedNode -> isLeftEmpty();
         bool rightEmpty = removedNode -> isRightEmpty();
 
@@ -84,22 +84,21 @@ class BinarySearchTree {
         } else if (!rightEmpty && leftEmpty) {
             removedNode -> replaceParentChild(removedNode -> getRightChild());
         } else {
+            Node *newParent = getLeftmostElement(removedNode -> getRightChild());
+            int newParentValue = newParent -> getValue();
+            removeNode(newParent);
+
             Node *leftChild = removedNode -> getLeftChild();
             Node *rightChild = removedNode -> getRightChild();
-            Node *newParent = getLeftmostElement(rightChild);
-
-            removeNode(newParent, true);
+            newParent = new Node(newParentValue, removedNode -> getParent());
             leftChild -> setParent(newParent);
             rightChild -> setParent(newParent);
             newParent -> setLeftChild(leftChild);
             newParent -> setRightChild(rightChild);
-            
+
             if (removedNode == root_) {
                 root_ = newParent;
             }
-        }
-        if (!leaveAlive) {
-            delete removedNode;
         }
     }
 
@@ -236,7 +235,7 @@ class BinarySearchTree {
         void removeNodeFromTree(int val) {
             Node *currentNode = getElementOfValue(val);
             if (currentNode) {
-                removeNode(currentNode, false);
+                removeNode(currentNode);
             }
         }
 };
