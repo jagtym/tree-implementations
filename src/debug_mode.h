@@ -44,6 +44,9 @@ void debug_mode() {
     std::cout << "Removed element of value 3" << std::endl;
     tree.printInOrder();
 
+    // Check removing root element
+    tree.removeNodeFromTree(15);
+
     // Check tree destruction
     tree.destroyTree();
 
