@@ -10,6 +10,7 @@ void debug_mode() {
     tree.addNode(19);
     tree.addNode(2);
     tree.addNode(22);
+    tree.addNode(23);
 
     // Check duplicate adding
     tree.addNode(17);
@@ -43,6 +44,10 @@ void debug_mode() {
     tree.removeNodeFromTree(3);
     std::cout << "Removed element of value 3" << std::endl;
     tree.printInOrder();
+
+    // Check printing tree depth
+
+    tree.printTreeDepth();
 
     // Check removing root element
     tree.removeNodeFromTree(15);

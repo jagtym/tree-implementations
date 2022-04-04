@@ -73,6 +73,19 @@ class BinarySearchTree {
         return current_node;
     }
 
+    int getTreeDepth(Node *root) {
+        if (!root) {
+            return -1;
+        }
+        int leftDepth = getTreeDepth(root -> getLeftChild());
+        int rightDepth = getTreeDepth(root -> getRightChild());
+
+        if (leftDepth > rightDepth) {
+            return leftDepth + 1;
+        }
+        return rightDepth + 1;
+    }
+
     Node* getNeighbour(Node* node) {
         inOrder(root_);
         std::vector<int>::iterator i = std::find(value_buffer_.begin(), value_buffer_.end(), node -> getValue());
@@ -252,5 +265,9 @@ class BinarySearchTree {
             if (currentNode) {
                 removeNode(currentNode);
             }
+        }
+
+        void printTreeDepth() {
+            std::cout << "Tree depth: " << getTreeDepth(root_) << std::endl;
         }
 };
