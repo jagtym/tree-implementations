@@ -81,4 +81,11 @@ void debug_mode() {
     tree3.printTreeDepth();
     tree3.balanceTree();
     tree3.printTreeDepth();
+
+    BinarySearchTree tree4 = BinarySearchTree();
+    std::vector<int> loaded = {6, 3, 1, 19, 8, 5};
+    tree4.buildTree(loaded);
+    tree4.printInOrder();
+    tree4.balanceTree();
+    tree4.printTreeDepth();
 }

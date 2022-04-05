@@ -309,4 +309,10 @@ class BinarySearchTree {
                 balanced = balanceTreeBFS();
             }
         }
+
+        virtual void buildTree(std::vector<int> &inputBuffer) {
+            for (int x: inputBuffer) {
+                addNode(x);
+            }
+        }
 };
