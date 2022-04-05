@@ -4,6 +4,7 @@
 #include <queue>
 #include <sstream>
 #include <chrono>
+#include <random>
 
 #include "tree-implementations/Node.h"
 #include "tree-implementations/BinarySearchTree.h"

@@ -1,3 +1,16 @@
+int get_random_in_range(int start, int end) {
+    std::random_device rd; 
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(start, end);
+    return distr(gen);
+}
+
+void generate(std::vector<int> &numbers, int size) {
+    for (int i = 0; i < size; i++) {
+        numbers.push_back(get_random_in_range(1, size * 10));
+    }
+}
+
 void load(std::vector<int> &numbers) {
     std::cout << "enter numbers (integers)" << std::endl;
     std::string input;
@@ -32,6 +45,32 @@ void manual_mode() {
             load(vec);
             auto start = std::chrono::high_resolution_clock::now();
             bst_tree.buildTree(vec);
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            std::cout << "time: " << duration.count() << std::endl;
+        }
+        else if (command == "generate-bst") {
+            std::vector<int> vec;
+            int size;
+            std::cout << "size: ";
+            std::cin >> size;
+            std::cout << std::endl;
+            generate(vec, size);
+            auto start = std::chrono::high_resolution_clock::now();
+            bst_tree.buildTree(vec);
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            std::cout << "time: " << duration.count() << std::endl;
+        }
+        else if (command == "generate-avl") {
+            std::vector<int> vec;
+            int size;
+            std::cout << "size: ";
+            std::cin >> size;
+            std::cout << std::endl;
+            generate(vec, size);
+            auto start = std::chrono::high_resolution_clock::now();
+            avl_tree.buildTree(vec);
             auto stop = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
             std::cout << "time: " << duration.count() << std::endl;
