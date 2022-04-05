@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <sstream>
 
 #include "tree-implementations/Node.h"
 #include "tree-implementations/BinarySearchTree.h"

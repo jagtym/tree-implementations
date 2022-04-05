@@ -285,6 +285,14 @@ class BinarySearchTree {
             }
         }
 
+        void printPreOrderByKey(int key) {
+            Node *current = getElementOfValue(key);
+            if (current) {
+                getElementsPreOrder(current);
+                printValueBuffer();
+            }
+        }
+
         void printPostOrder() {
             if (root_) {
                 getElementsPostOrder(root_);
@@ -308,6 +316,13 @@ class BinarySearchTree {
             while (!balanced) {
                 balanced = balanceTreeBFS();
             }
+        }
+
+        bool ok() {
+            if (getTreeDepth(root_) < 0) {
+                return false;
+            }
+            return true;
         }
 
         virtual void buildTree(std::vector<int> &inputBuffer) {
