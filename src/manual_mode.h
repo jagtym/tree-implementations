@@ -30,18 +30,30 @@ void manual_mode() {
         else if (command == "load-bst") {
             std::vector<int> vec;
             load(vec);
+            auto start = std::chrono::high_resolution_clock::now();
             bst_tree.buildTree(vec);
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            std::cout << "time: " << duration.count() << std::endl;
         }
         else if (command == "load-avl") {
             std::vector<int> vec;
             load(vec);
+            auto start = std::chrono::high_resolution_clock::now();
             avl_tree.buildTree(vec);
+            auto stop = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            std::cout << "time: " << duration.count() << std::endl;
         }
         else if (command == "smallest-bst") {
             if (bst_tree.ok()) {
+                auto start = std::chrono::high_resolution_clock::now();
                 int smallest = bst_tree.getSmallestValue();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
                 std::cout << "smallest: " << smallest << std::endl;
                 bst_tree.printSearchPath();
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "smallest-avl") {
@@ -53,9 +65,13 @@ void manual_mode() {
         }
         else if (command == "biggest-bst") {
             if (bst_tree.ok()) {
+                auto start = std::chrono::high_resolution_clock::now();
                 int biggest = bst_tree.getLargestValue();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
                 std::cout << "biggest: " << biggest << std::endl;
                 bst_tree.printSearchPath();
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "biggest-avl") {
@@ -85,12 +101,20 @@ void manual_mode() {
         }
         else if (command == "inorder-bst") {
             if (bst_tree.ok()) {
+                auto start = std::chrono::high_resolution_clock::now();
                 bst_tree.printInOrder();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "inorder-avl") {
             if (avl_tree.ok()) {
+                auto start = std::chrono::high_resolution_clock::now();
                 avl_tree.printInOrder();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "preorder-bst") {
@@ -117,32 +141,48 @@ void manual_mode() {
             if (bst_tree.ok()) {
                 int key;
                 std::cout << "key: ";
-                std::cin >> key;
-                std::cout << std::endl;
-                bst_tree.printPreOrderByKey(key);
+                try {
+                    std::cin >> key;
+                    std::cout << std::endl;
+                    bst_tree.printPreOrderByKey(key);
+                } catch (...) {
+                    std::cout << "error when entering number!" << std::endl;
+                }
             }
         }
         else if (command == "preorder-key-avl") {
             if (avl_tree.ok()) {
                 int key;
                 std::cout << "key: ";
-                std::cin >> key;
-                std::cout << std::endl;
-                avl_tree.printPreOrderByKey(key);
+                try {
+                    std::cin >> key;
+                    std::cout << std::endl;
+                    avl_tree.printPreOrderByKey(key);
+                } catch (...) {
+                    std::cout << "error when entering number!" << std::endl;
+                }
             }
         }
         else if (command == "balance-bst") {
             if (bst_tree.ok()) {
                 bst_tree.printPreOrder();
+                auto start = std::chrono::high_resolution_clock::now();
                 bst_tree.balanceTree();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
                 bst_tree.printPreOrder();
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "balance-avl") {
             if (avl_tree.ok()) {
                 avl_tree.printPreOrder();
+                auto start = std::chrono::high_resolution_clock::now();
                 avl_tree.balanceTree();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
                 avl_tree.printPreOrder();
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "height-bst") {

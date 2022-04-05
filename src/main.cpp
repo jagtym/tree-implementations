@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include <sstream>
+#include <chrono>
 
 #include "tree-implementations/Node.h"
 #include "tree-implementations/BinarySearchTree.h"
