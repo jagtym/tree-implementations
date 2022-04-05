@@ -13,9 +13,6 @@ class Node {
             right_ = nullptr;
         }
 
-        ~Node() {
-        } 
-
         int getValue() {
             return val_;
         }

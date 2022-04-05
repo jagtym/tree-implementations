@@ -68,7 +68,7 @@ void debug_mode() {
     tree2.printSearchPath();
 
     // Check balancing the tree
-
+    
     BinarySearchTree tree3 = BinarySearchTree();
     tree3.addNode(1);
     tree3.addNode(2);

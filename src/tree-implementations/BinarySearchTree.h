@@ -105,12 +105,14 @@ class BinarySearchTree {
                 removedNode -> replaceParentChild(removedNode -> getLeftChild());
             } else {
                 root_ = removedNode -> getLeftChild();
+                root_ -> setParent(nullptr);
             }
         } else if (!rightEmpty && leftEmpty) {
             if (removedNode -> getParent()) {
                 removedNode -> replaceParentChild(removedNode -> getRightChild());
             } else {
                 root_ = removedNode -> getRightChild();
+                root_ -> setParent(nullptr);
             }
         } else {
             Node *newParent = getNeighbour(removedNode);
