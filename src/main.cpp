@@ -5,6 +5,7 @@
 
 #include "tree-implementations/Node.h"
 #include "tree-implementations/BinarySearchTree.h"
+#include "tree-implementations/AVLTree.h"
 
 #include "testing_mode.h"
 #include "manual_mode.h"

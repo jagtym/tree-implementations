@@ -88,4 +88,9 @@ void debug_mode() {
     tree4.printInOrder();
     tree4.balanceTree();
     tree4.printTreeDepth();
+
+    AVLTree atree = AVLTree();
+    atree.buildTree(loaded);
+    atree.printInOrder();
+    atree.printTreeDepth();
 }
