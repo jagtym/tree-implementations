@@ -13,10 +13,6 @@ class AVLTree: public BinarySearchTree {
     public:
         virtual void buildTree(std::vector<int> &inputBuffer) {
             std::sort(inputBuffer.begin(), inputBuffer.end());
-            for (auto x: inputBuffer) {
-                std::cout << x << " ";
-            }
-            std::cout << std::endl;
-            assignNumbers(inputBuffer, 0, inputBuffer.size());
+            assignNumbers(inputBuffer, 0, inputBuffer.size() - 1);
         }
 };
