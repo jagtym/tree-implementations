@@ -317,8 +317,15 @@ class BinarySearchTree {
 
         void balanceTree() {
             bool balanced = false;
+            int i = 0;
             while (!balanced) {
+                if (i > 100) {
+                    inOrder(root_);
+                    root_ = getRootForA(value_buffer_); 
+                    break;
+                }
                 balanced = balanceTreeBFS();
+                i++;
             }
         }
 
@@ -327,6 +334,10 @@ class BinarySearchTree {
                 return false;
             }
             return true;
+        }
+
+        Node* getRoot() {
+            return root_;
         }
 
         virtual void buildTree(std::vector<int> &inputBuffer) {

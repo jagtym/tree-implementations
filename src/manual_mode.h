@@ -9,13 +9,13 @@ void generate(std::vector<int> &numbers, int size) {
     for (int i = 0; i < size; i++) {
         int random = get_random_in_range(1, size * 10);
         if (!std::count(numbers.begin(), numbers.end(), random)) {
-            std::cout << random << " ";
+            // std::cout << random << " ";
             numbers.push_back(random);
         } else {
             i--;
         }
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
 }
 
 void load(std::vector<int> &numbers) {
@@ -211,23 +211,23 @@ void manual_mode() {
         }
         else if (command == "balance-bst") {
             if (bst_tree.ok()) {
-                bst_tree.printPreOrder();
+                // bst_tree.printPreOrder();
                 auto start = std::chrono::high_resolution_clock::now();
                 bst_tree.balanceTree();
                 auto stop = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-                bst_tree.printPreOrder();
+                // bst_tree.printPreOrder();
                 std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "balance-avl") {
             if (avl_tree.ok()) {
-                avl_tree.printPreOrder();
+                // avl_tree.printPreOrder();
                 auto start = std::chrono::high_resolution_clock::now();
                 avl_tree.balanceTree();
                 auto stop = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-                avl_tree.printPreOrder();
+                // avl_tree.printPreOrder();
                 std::cout << "time: " << duration.count() << std::endl;
             }
         }
