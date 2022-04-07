@@ -7,8 +7,15 @@ int get_random_in_range(int start, int end) {
 
 void generate(std::vector<int> &numbers, int size) {
     for (int i = 0; i < size; i++) {
-        numbers.push_back(get_random_in_range(1, size * 10));
+        int random = get_random_in_range(1, size * 10);
+        if (!std::count(numbers.begin(), numbers.end(), random)) {
+            std::cout << random << " ";
+            numbers.push_back(random);
+        } else {
+            i--;
+        }
     }
+    std::cout << std::endl;
 }
 
 void load(std::vector<int> &numbers) {

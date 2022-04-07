@@ -70,13 +70,8 @@ void debug_mode() {
     // Check balancing the tree
     
     BinarySearchTree tree3 = BinarySearchTree();
-    tree3.addNode(1);
-    tree3.addNode(2);
-    tree3.addNode(3);
-    tree3.addNode(4);
-    tree3.addNode(5);
-    tree3.addNode(6);
-    tree3.addNode(7);
+    std::vector<int> numbers = {18, 69, 66, 42, 53, 37, 15, 23, 38, 6};
+    tree3.buildTree(numbers);
 
     tree3.printTreeDepth();
     tree3.balanceTree();
