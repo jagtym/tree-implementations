@@ -5,6 +5,7 @@
 #include <sstream>
 #include <chrono>
 #include <random>
+#include <algorithm>
 
 #include "tree-implementations/Node.h"
 Node* getRootForA(std::vector<int> &num);
