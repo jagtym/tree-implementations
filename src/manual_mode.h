@@ -122,7 +122,7 @@ void manual_mode() {
         }
         else if (command == "biggest-avl") {
             if (avl_tree.ok()) {
-                int biggest = avl_tree.getBiggestValue();
+                int biggest = avl_tree.getLargestValue();
                 std::cout << "biggest: " << biggest << std::endl;
                 avl_tree.printSearchPath();
             }
