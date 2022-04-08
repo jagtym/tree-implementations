@@ -104,9 +104,13 @@ void manual_mode() {
         }
         else if (command == "smallest-avl") {
             if (avl_tree.ok()) {
+                auto start = std::chrono::high_resolution_clock::now();
                 int smallest = avl_tree.getSmallestValue();
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
                 std::cout << "smallest: " << smallest << std::endl;
                 avl_tree.printSearchPath();
+                std::cout << "time: " << duration.count() << std::endl;
             }
         }
         else if (command == "biggest-bst") {
