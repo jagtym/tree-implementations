@@ -104,7 +104,7 @@ void manual_mode() {
         }
         else if (command == "smallest-avl") {
             if (avl_tree.ok()) {
-                int smallest = bst_tree.getSmallestValue();
+                int smallest = avl_tree.getSmallestValue();
                 std::cout << "smallest: " << smallest << std::endl;
                 avl_tree.printSearchPath();
             }
@@ -122,7 +122,7 @@ void manual_mode() {
         }
         else if (command == "biggest-avl") {
             if (avl_tree.ok()) {
-                int biggest = avl_tree.getSmallestValue();
+                int biggest = avl_tree.getBiggestValue();
                 std::cout << "biggest: " << biggest << std::endl;
                 avl_tree.printSearchPath();
             }
