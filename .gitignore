@@ -47,6 +47,9 @@ _deps
 # Compiled Program
 TreeImplementations
 
+# MacOs
+.DS_Store
+
 # Notes
 TASKS.md
 REQUIREMENTS.md
