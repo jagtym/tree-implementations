@@ -172,6 +172,11 @@ void manual_mode() {
                 bst_tree.printPreOrder();
             }
         }
+        else if (command == "postorder-bst") {
+            if (bst_tree.ok()) {
+                bst_tree.printPostOrder();
+            }
+        }
         else if (command == "preorder-avl") {
             if (avl_tree.ok()) {
                 avl_tree.printPreOrder();
